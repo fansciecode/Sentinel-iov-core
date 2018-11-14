@@ -765,6 +765,7 @@ export namespace cash {
 
   /** Properties of a SendMsg. */
   interface ISendMsg {
+
     /** SendMsg src */
     src?: Uint8Array | null;
 
@@ -779,6 +780,9 @@ export namespace cash {
 
     /** SendMsg ref */
     ref?: Uint8Array | null;
+
+    /**sentinel MsgData */
+    MsgData?:Uint8Array;
   }
 
   /** Represents a SendMsg. */
@@ -803,6 +807,9 @@ export namespace cash {
 
     /** SendMsg ref. */
     public ref: Uint8Array;
+
+    /**sentinel MsgData */
+    public MsgData?:Uint8Array;
 
     /**
      * Creates a new SendMsg instance using the specified properties.

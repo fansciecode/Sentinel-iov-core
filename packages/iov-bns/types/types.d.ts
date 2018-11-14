@@ -1,5 +1,5 @@
 import Long from "long";
-import { BcpCoin, FullSignature, FungibleToken } from "@iov/bcp-types";
+import { BcpCoin, FullSignature, FungibleToken,PayVpnService } from "@iov/bcp-types";
 import { Algorithm, PrivateKeyBundle, PrivateKeyBytes, PublicKeyBundle, PublicKeyBytes, SignatureBytes } from "@iov/tendermint-types";
 import * as codecImpl from "./codecimpl";
 import { InitData } from "./normalize";
@@ -14,6 +14,7 @@ export interface Decoder<T extends {}> {
     readonly decode: (data: Uint8Array) => T;
 }
 export declare const encodeToken: (token: FungibleToken) => codecImpl.x.Coin;
+export declare const encodeData: (token: FungibleToken) => codecImpl.x.Coin;
 export declare const encodeFullSig: (sig: FullSignature) => codecImpl.sigs.StdSignature;
 export declare const encodePubKey: (publicKey: PublicKeyBundle) => {
     ed25519: PublicKeyBytes;

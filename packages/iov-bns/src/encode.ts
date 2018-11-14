@@ -1,5 +1,6 @@
 import {
   FullSignature,
+  PayVpnServiceTx,
   SendTx,
   SetNameTx,
   SignedTransaction,
@@ -12,7 +13,7 @@ import {
 } from "@iov/bcp-types";
 
 import * as codecImpl from "./codecimpl";
-import { encodeFullSig, encodeToken } from "./types";
+import {  encodeData,encodeFullSig, encodeToken} from "./types";
 import { keyToAddress, preimageIdentifier } from "./util";
 
 export const buildSignedTx = (tx: SignedTransaction): codecImpl.app.ITx => {
@@ -31,6 +32,8 @@ export const buildUnsignedTx = (tx: UnsignedTransaction): codecImpl.app.ITx => {
 
 export const buildMsg = (tx: UnsignedTransaction): codecImpl.app.ITx => {
   switch (tx.kind) {
+    case TransactionKind.Sentinel:
+      return buildSentinelTx(tx);
     case TransactionKind.Send:
       return buildSendTx(tx);
     case TransactionKind.SetName:
@@ -46,6 +49,15 @@ export const buildMsg = (tx: UnsignedTransaction): codecImpl.app.ITx => {
   }
 };
 
+const buildSentinelTx =(tx:PayVpnServiceTx): codecImpl.app.ITx =>({
+  
+ sendMsg: codecImpl.cash.SendMsg.create({
+   src:keyToAddress(tx.signer),
+   dest:tx.recipient,
+   MsgData:
+
+ }),
+});
 const buildSendTx = (tx: SendTx): codecImpl.app.ITx => ({
   sendMsg: codecImpl.cash.SendMsg.create({
     src: keyToAddress(tx.signer),

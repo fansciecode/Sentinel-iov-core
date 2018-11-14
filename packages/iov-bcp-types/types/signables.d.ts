@@ -12,6 +12,13 @@ export interface SigningJob {
     readonly bytes: SignableBytes;
     readonly prehashType: PrehashType;
 }
+//Sentinel client signature type 
+export interface ClientSignature extends FullSignature {
+// readonly Coins :FungibleToken;
+readonly SessionId :ByteString;
+readonly counter :number;
+readonly isfinal :1;
+}
 export interface FullSignature {
     readonly nonce: Nonce;
     readonly publicKey: PublicKeyBundle;
