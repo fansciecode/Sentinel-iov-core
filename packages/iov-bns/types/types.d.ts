@@ -14,7 +14,7 @@ export interface Decoder<T extends {}> {
     readonly decode: (data: Uint8Array) => T;
 }
 export declare const encodeToken: (token: FungibleToken) => codecImpl.x.Coin;
-export declare const encodeData: (token: FungibleToken) => codecImpl.x.Coin;
+export declare const encodeData: (data: PayVpnService) => codecImpl.x.msgData;
 export declare const encodeFullSig: (sig: FullSignature) => codecImpl.sigs.StdSignature;
 export declare const encodePubKey: (publicKey: PublicKeyBundle) => {
     ed25519: PublicKeyBytes;

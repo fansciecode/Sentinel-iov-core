@@ -1,6 +1,6 @@
 import Long from "long";
 
-import { BcpCoin, FullSignature, FungibleToken, PayVpnService , Nonce ,  TokenTicker } from "@iov/bcp-types";
+import { BcpCoin, FullSignature, FungibleToken,Nonce ,PayVpnService ,TokenTicker } from "@iov/bcp-types";
 import {
   Algorithm,
   PrivateKeyBundle,
@@ -34,13 +34,10 @@ export const encodeToken = (token: FungibleToken) =>
     fractional: token.fractional || null,
     ticker: token.tokenTicker,
   });
-export const encodeData = (data: FungibleToken) =>
-  codecImpl.x.Coin.create({
-    // use null instead of 0 to not encode zero fields
-    // for compatibility with golang encoder
-    whole: token.whole || null,
-    fractional: token.fractional || null,
-    ticker: token.tokenTicker,
+export const encodeData = (data: PayVpnService) =>
+  codecImpl.x.msgData.create({
+    MsgData :data as Uint8Array,
+  
   });
 export const encodeFullSig = (sig: FullSignature) =>
   codecImpl.sigs.StdSignature.create({
